@@ -1,0 +1,28 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  CI_REGISTRY_IMAGE: "$EL_REGISTRY/kawa/ros-kinetic-slam-toolbox"
+
+before_script:
+  - docker info
+  - export
+  - docker login -u "$EL_REGISTRY_USER" -p "$EL_REGISTRY_PASSWORD" "$EL_REGISTRY"
+
+build-master:
+  stage: build
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+  only:
+    - master
+
+build:
+  stage: build
+  script:
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+  except:
+    - master
