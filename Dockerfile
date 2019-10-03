@@ -32,6 +32,7 @@ RUN source /opt/ros/kinetic/setup.bash \
 COPY run-shells /run-shells
 COPY launch /launch
 COPY config /config
+COPY maps /maps
 
 ENV ROS_MASTER_URI "http://ros-master:11311"
 
