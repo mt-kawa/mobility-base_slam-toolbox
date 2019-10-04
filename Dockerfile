@@ -22,7 +22,7 @@ RUN source /opt/ros/kinetic/setup.bash \
     && catkin_init_workspace \
     && cd .. \
     && catkin config --install \
-    && catkin build -DCMAKE_BUILD_TYPE=Release
+    && catkin build -DCMAKE_BUILD_TYPE=Release --jobs 4
 
 #RUN echo "source /catkin_ws/install/setup.bash" >> ~/.bashrc
 
