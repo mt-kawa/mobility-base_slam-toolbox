@@ -47,11 +47,35 @@ ros-slam-toolbox:
 
 ## Serializing a Map
 
+Serializing a map to the file system can be done by simply calling the ROS
+service `/slam_toolbox/serialize_map` with a file name as argument
+
 ```zsh
 rosservice call /slam_toolbox/serialize_map map_name
 ```
 
+> **_NOTE: Set a known pose as a **dock** where SLAM starts_**
+
 ## Deserializing a Map
+
+Deserialize a map from the file system by calling the ROS service
+`/slam_toolbox/deserialize_map` with the following `YAML` definition
+
+```yaml
+{
+        filename: map_name,
+        match_type: 1,
+        initial_pose:
+        {
+                x: 0.0,
+                y: 0.0,
+                theta: 0.0
+        }
+}
+```
+
+> **_NOTE: Fill in a previously saved known pose as a **dock** for SLAM starts_**
+
 
 ```zsh
 rosservice call /slam_toolbox/deserialize_map "{filename: map_name, match_type: 1, initial_pose: {x: 0.0, y: 0.0, theta: 0.0}}"
