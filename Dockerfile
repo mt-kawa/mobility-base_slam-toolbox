@@ -17,7 +17,7 @@ RUN source /opt/ros/kinetic/setup.bash \
     && rosdep install -y -r --from-paths src --ignore-src --rosdistro=kinetic -y
 
 RUN apt install python-catkin-tools -y
-RUN source /opt/ros/kinetic/setup.bash && \
+RUN source /opt/ros/kinetic/setup.bash \
     && cd catkin_ws/src \
     && catkin_init_workspace \
     && cd .. \
