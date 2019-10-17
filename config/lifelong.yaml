@@ -36,7 +36,8 @@ lifelong_candidates_scale: 0.03
 # or at the dock, but they are mutually exclusive, if pose is given
 # will use pose
 map_file_name: sim_map-v2
-map_start_pose: [0.0, 0.0, 0.8897283260001848]
+map_start_pose: [-2.16437004464, -0.129177983213, 0.42777095964573186]
+# P4P Workstation SIM {x: -2.16437004464, y: -0.129177983213, theta: 0.42777095964573186}
 # map_start_at_dock: true
 
 debug_logging: true
