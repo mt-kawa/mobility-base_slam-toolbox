@@ -47,14 +47,36 @@ ros-slam-toolbox:
 
 ## Serializing a Map
 
+Serializing a map to the file system can be done by simply calling the ROS
+service `/slam_toolbox/serialize_map` with a file name as argument
+
 ```zsh
 rosservice call /slam_toolbox/serialize_map map_name
 ```
 
+> **_NOTE: Set a known pose as a **dock** where SLAM starts_**
+
 ## Deserializing a Map
 
+Deserialize a map from the file system by calling the ROS service
+`/slam_toolbox/deserialize_map` with the following `YAML` definition
+
+```yaml
+{
+        filename: map_name,
+        match_type: 2,
+        initial_pose:
+        {
+                x: 0.0,
+                y: 0.0,
+                theta: 0.0
+        }
+}
+```
+
 Call map deserialization using a approximate starting location defined as dock
-using the process type `PROCESS_NEAR_REGION` from the enum
+using the match / process type `PROCESS_NEAR_REGION` from the enumeration type
+`ProcessType`
 
 ```zsh
 // types of sensor processing
@@ -67,8 +89,13 @@ using the process type `PROCESS_NEAR_REGION` from the enum
  };
 ```
 
+This will localize the mobile base near the initial pose provided and apply scan
+matching using the actual laser scans. The mapping will continue from this pose
+in the graph.
 
 ```zsh
 rosservice call /slam_toolbox/deserialize_map "{filename: map_name, match_type:
 2, initial_pose: {x: 0.0, y: 0.0, theta: 0.0}}"
 ```
+
+> **_NOTE: Fill in a previously saved known pose as a **dock** for SLAM starts_**

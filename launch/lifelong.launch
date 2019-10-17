@@ -2,6 +2,7 @@
 
   <node pkg="slam_toolbox" type="lifelong_slam_toolbox_node" name="slam_toolbox" output="screen">
     <rosparam command="load" file="/config/lifelong.yaml" />
+		<remap from="scan" to="/laser_birdcage_r2000/scan_filtered" />
   </node>
 
 </launch>
