@@ -53,6 +53,22 @@ rosservice call /slam_toolbox/serialize_map map_name
 
 ## Deserializing a Map
 
+Call map deserialization using a approximate starting location defined as dock
+using the process type `PROCESS_NEAR_REGION` from the enum
+
 ```zsh
-rosservice call /slam_toolbox/deserialize_map "{filename: map_name, match_type: 1, initial_pose: {x: 0.0, y: 0.0, theta: 0.0}}"
+// types of sensor processing
+ enum ProcessType
+ {
+   PROCESS = 0,
+   PROCESS_FIRST_NODE = 1,
+   PROCESS_NEAR_REGION = 2,
+   PROCESS_LOCALIZATION = 3
+ };
+```
+
+
+```zsh
+rosservice call /slam_toolbox/deserialize_map "{filename: map_name, match_type:
+2, initial_pose: {x: 0.0, y: 0.0, theta: 0.0}}"
 ```
